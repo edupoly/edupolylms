@@ -73,17 +73,26 @@ export const technologyApi = createApi({
             }
         }
     }),
+    addcontent: builder.mutation({
+        query:({topicInfo,tid,cid,topicId})=>{
+            return{
+                url:`/addcontent/${tid}/${cid}/${topicId}`,
+                method:"PUT",
+                body:topicInfo
+            }
+        }
+    }),
     topicdetails: builder.query({
         query: ({tid,cid}) => `/topicdetails/${tid}/${cid}`
     }),
     gettopicdetails: builder.query({
-        query: ({tid,cid,toid}) => `/gettopicdetails/${tid}/${cid}/${toid}`
+        query: ({tid,cid,topicId,contentId}) => `/gettopicdetails/${tid}/${cid}/${topicId}/${contentId}`
     }),
     updatetopic: builder.mutation({
-        query:({topicInfo,tid,cid,toid})=>{
-            console.log("hiiii",tid,cid,toid)
+        query:({topicInfo,tid,cid,topicId,contentId})=>{
+            console.log("hiiii",tid,cid,topicId)
             return{
-                url:`/updatetopic/${tid}/${cid}/${toid}`,
+                url:`/updatetopic/${tid}/${cid}/${topicId}/${contentId}`,
                 method:"PUT",
                 body:topicInfo
             }
@@ -117,4 +126,5 @@ export const { useAddtechnologyMutation,
                useGettopicdetailsQuery,
                useUpdatetopicMutation,
                useDeletetopicMutation,
+               useAddcontentMutation
                } = technologyApi

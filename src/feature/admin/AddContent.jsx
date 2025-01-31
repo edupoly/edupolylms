@@ -3,21 +3,24 @@ import { EditorState, convertToRaw } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from 'draftjs-to-html'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { useAddtopicMutation, useLazyGettechnologyQuery } from '../../services/technology';
+import { useAddcontentMutation, useAddtopicMutation, useLazyGettechnologyQuery } from '../../services/technology';
 import { useNavigate, useParams } from 'react-router-dom';
 
  
-function AddTopic() {
+function AddContent() {
 
   var [addtopicFn] = useAddtopicMutation();
-  var {tid,cid} = useParams()
+  var [addcontentFn] = useAddcontentMutation()
+  var {tid,cid,topicId} = useParams()
+  console.log(tid,cid,topicId)
   var navigate = useNavigate()
   
 
   let  [topicInfo, setTopicInfo] = useState({
         title: "",
-        shortheadind: "",
-        contents: ""
+        shortheading: "",
+        type:"",
+        content: ""
   })
 
   let editorState = EditorState.createEmpty();
@@ -39,39 +42,64 @@ function AddTopic() {
   }
 
 
+  let onChangeValuetype = (e)=>{
+      setTopicInfo({
+        ...topicInfo,
+        [e.target.name]:e.target.value
+      })
+  }
+
+
   let onEditorStateChange = (editorState) => {
     setDescription(editorState);
     const htmlContent = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-    setTopicInfo((prev) => ({ ...prev, contents: htmlContent }));
+    setTopicInfo((prev) => ({ ...prev, content: htmlContent }));
   };
   
   
 
 
-  let addtopic = async (event) => {
+  let addcontent = async (event) => {
       try {
          event.preventDefault();
-         await addtopicFn({topicInfo,tid,cid})
+         console.log("topicinfo",topicInfo)
+        var res =  await addcontentFn({topicInfo,tid,cid,topicId})
+        console.log("resss",res)
+        //  await addtopicFn({topicInfo,tid,cid})
          navigate(`/admin/addconcept/${tid}`)
       } catch (error) {
          console.log("error in adding topic")
       }
   }
 
+  
   return (
     <div className='p-2'>
-      <form onSubmit={addtopic}>
+      <form onSubmit={addcontent}>
        Add topic
        <div>
          <label htmlFor="title">Title</label>
          <input type="text" name='title' value={topicInfo.title} onChange={onChangeValue} className='form-control' placeholder='Title'/>
        </div>
        <div>
-         <label htmlFor="shortheading">Short heading</label>
+         <label htmlFor="shortheadind">Short heading</label>
          <input type="text" name='shortheading' value={topicInfo.shortheading} onChange={onChangeValueshortheading} className='form-control' placeholder='Short Heading'/>
        </div>
        <div>
-        <label htmlFor="contents">Description</label>
+         <label htmlFor="type">Type</label>
+         <select type="text" name='type' value={topicInfo.type} onChange={onChangeValuetype} className='form-control' placeholder='Type'>
+            <option value="">select content type</option>
+            <option value="Description">description</option>
+            <option value="Video">video</option>
+            <option value="Practise-questions">Practise-questions</option>
+            <option value="Assignments">Assignments</option>
+            <option value="Quiz">Quiz</option>
+            <option value="Projects">Projects</option>
+         </select>
+        
+       </div>
+       <div>
+        <label htmlFor="content">Description</label>
            <Editor
              editorState={description}
              toolbarClassName='toolbarClassName'
@@ -95,4 +123,4 @@ function AddTopic() {
   )
 }
 
-export default AddTopic
+export default AddContent

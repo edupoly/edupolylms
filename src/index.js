@@ -14,7 +14,7 @@ import AddTechnology from './feature/admin/AddTechnology.jsx';
 import AdminDashboard from './feature/admin/AdminDashboard.jsx';
 import AddConcept from './feature/admin/AddConcept.jsx';
 import Edittechnology from './feature/admin/Edittechnology.jsx';
-import AddTopic from './feature/admin/AddTopic.jsx';
+import AddContent from './feature/admin/AddContent.jsx';
 import Topicdetails from './feature/admin/Topicdetails.jsx';
 import EditTopic from './feature/admin/EditTopic.jsx';
 import UserDashboard from './feature/user/UserDashboard.jsx';
@@ -22,6 +22,7 @@ import Technology from './feature/user/Technology.jsx';
 import Technologydetails from './feature/user/Technologydetails.jsx';
 import TopicDetails from './feature/user/TopicDetails.jsx';
 import AdminTechnology from './feature/admin/AdminTechnology.jsx';
+import AddTopicc from './feature/admin/AddTopicc.jsx';
 
 
 const router = createBrowserRouter([
@@ -51,14 +52,20 @@ const router = createBrowserRouter([
                   },
                   {
                     path: "/admin/addconcept/:tid/addtopic/:cid",
-                    element: <AddTopic></AddTopic>
+                    element: <AddTopicc></AddTopicc>
                   },
                   {
-                    path: "/admin/addconcept/:tid/topicdetails/:cid",
-                    element: <Topicdetails></Topicdetails>
+                    path: "/admin/addconcept/:tid/topicdetails/:cid/:topicId",
+                    element: <Topicdetails></Topicdetails>,
+                    children: [
+                      {
+                        path: "/admin/addconcept/:tid/topicdetails/:cid/:topicId/addcontent",
+                        element: <AddContent></AddContent>
+                      }
+                    ]
                   },
                   {
-                    path: "/admin/addconcept/:tid/edittopic/:cid/:toid",
+                    path: "/admin/addconcept/:tid/edittopic/:cid/:topicId/:contentId/editcontent",
                     element: <EditTopic></EditTopic>
                   }
                 ]

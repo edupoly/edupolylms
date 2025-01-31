@@ -8,6 +8,8 @@ function AddConcept() {
    var {tid} = useParams()
    var navigate = useNavigate()
    var {data:technology, isLoading} = useGettechnologyQuery(tid);
+   console.log("tid",tid)
+   console.log("data",technology)
    var [getLazyTechFn] = useLazyGettechnologyQuery();
    var [deltechFn] = useDeletetechnologyMutation()
    var [addconceptFn] = useAddconceptMutation();
@@ -71,12 +73,16 @@ function AddConcept() {
           <div>
               {
                 technology?.concepts?.map((concept)=>{
+                  console.log("con",concept)
+                  // console.log("cid",concept.topics[0]._id)
                     return <div className='border m-1 p-1'>
                               <div className='d-flex justify-content-between'>
                                 <div className='d-flex'>
-                                    <h5>{concept.conceptName}</h5>
-                                    <button className='btn btn-primary me-1 p-1'  onClick={()=>{editConcept(concept)}}>edit</button>
-                                    <button className='btn btn-danger p-1'  onClick={()=>{deleteConcept(concept)}}>delete</button>
+                                    <b>{concept.conceptName}</b>
+                                    <i class="bi bi-pen pe-2 text-success" style={{width:"35px"}}  onClick={()=>{editConcept(concept)}}></i>
+                                     
+                                    <i class="bi bi-trash   p-2 text-danger" style={{width:"45px", float:"start"}} onClick={()=>{deleteConcept(concept)}}></i>
+                                    {/* <button className='btn btn-danger p-1'  >delete</button> */}
                                 </div>
                                 <div>
                                     <Link to={`/admin/addconcept/${tid}/addtopic/${concept._id}`}><button className='btn btn-success me-1 p-1' >+Add Topic</button></Link> 
@@ -84,9 +90,9 @@ function AddConcept() {
                               </div>
                         
                                 <div className='p-1 border m-1 d-flex'>
-                                <Link to={`/admin/addconcept/${tid}/topicdetails/${concept._id}`} className="text-decoration-none text-dark"><h6>{concept.topics[0]?.shortheading}</h6></Link> 
-                                    <Link to={`/admin/addconcept/${tid}/edittopic/${concept._id}/${concept?.topics[0]?._id}`}><button className='btn btn-warning p-1 me-1'>edit</button></Link>
-                                    <button className='btn btn-danger p-1' onClick={(e)=>{deltopic(concept)}}>del</button>
+                                <Link to={`/admin/addconcept/${tid}/topicdetails/${concept._id}/${concept.topics[0]?._id}`} className="text-decoration-none text-dark"><i>{concept.topics[0]?.shortheading}</i></Link> 
+                                    <Link to={`/admin/addconcept/${tid}/edittopic/${concept._id}`}><i class="bi bi-pen d-inline-block pe-2 text-success" style={{width:"35px"}}></i></Link>
+                                    <i class="bi bi-trash  d-inline-block p-2 text-danger " style={{width:"35px"}}  onClick={(e)=>{deltopic(concept)}}></i>
                                 </div>
                             </div>
                 })

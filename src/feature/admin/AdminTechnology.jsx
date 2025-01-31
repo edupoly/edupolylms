@@ -5,7 +5,7 @@ import { useGetAlltechnologiesQuery } from '../../services/technology'
 function AdminTechnology() {
 
     var {data:technologies, isLoading} = useGetAlltechnologiesQuery()
-
+    console.log(technologies)
   return (
     <div className='m-2 p-2 border '>
       <div>
