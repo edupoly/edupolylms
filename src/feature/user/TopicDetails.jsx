@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useTopicdetailsQuery } from '../../services/technology';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import parse from 'html-react-parser';
-
 function TopicDetails() {
-    const { tid, cid, topicId } = useParams();
+  const { tid, cid, topicId } = useParams();
     const { data: technology } = useTopicdetailsQuery({ tid, cid });
     const [topicdetails, setTopicdetails] = useState([]);
   
@@ -40,16 +39,16 @@ function TopicDetails() {
                   <div className="border m-2" key={content._id}>
                     <div className="d-flex justify-content-between">
                       <div>
-                        <h2>{content.shortheading} </h2>
+                        <h2>{content.shortheading}</h2>
                       </div>
-                      <div>
-                        {/* <Link
+                      {/* <div>
+                        <Link
                           to={`/admin/addconcept/${tid}/edittopic/${cid}/${topicId}/${content._id}/editcontent`}
                         >
                           <i class="bi bi-pen d-inline-block pe-2 text-success" style={{width:"35px"}}></i>
-                        </Link> */}
-                        {/* <i class="bi bi-trash  d-inline-block p-2 text-danger " style={{width:"45px"}}></i> */}
-                      </div>
+                        </Link>
+                        <i class="bi bi-trash  d-inline-block p-2 text-danger " style={{width:"45px"}}></i>
+                      </div> */}
                     </div>
                     <div>
                       {typeof content.content === "string"

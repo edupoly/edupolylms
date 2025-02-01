@@ -12,7 +12,7 @@ function Technologydetails() {
     <div className='m-2 p-2 d-flex'>
        <div className='border w-25 me-2'>
           <div className='d-flex justify-content-between border m-1 p-2'>
-            <div className='d-flex'>
+            <div className='d-flex justify-content-center w-100'>
               <h3>{technology?.title}</h3>
             </div>
           </div>
