@@ -61,15 +61,13 @@ function AddConcept() {
     <div className='m-2 p-2 d-flex'>
         <div className='border w-25 me-2'>
           <div className='d-flex justify-content-between border m-1 p-2'>
-            <div className='d-flex'>
-              <h3>{technology?.title}</h3>
-              <Link to={`/admin/addconcept/${tid}/edittechnology/`}><i class="bi bi-pencil-square fs-2"></i></Link>
-            <i class="bi bi-trash text-danger fs-2"  onClick={()=>deleteTechnology(technology)}></i>
+            <div className='d-flex justify-content-around w-100 '>
+               <h3>{technology?.title}</h3>
+              <Link to={`/admin/addconcept/${tid}/edittechnology/`}><i class="bi bi-pencil-square fs-3"></i></Link>
+              <i class="bi bi-trash text-danger fs-3"  onClick={()=>deleteTechnology(technology)}></i>
+              <i class="bi bi-plus-circle-fill fs-3" onClick={()=>{addConcept()}}></i>
             </div>
-            <div>
-               <i class="bi bi-plus-circle-fill fs-2" onClick={()=>{addConcept()}}></i>
-            </div>
-          </div>
+         </div>
           <div>
               {
                 technology?.concepts?.map((concept)=>{
