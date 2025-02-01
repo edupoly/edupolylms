@@ -63,11 +63,11 @@ function AddConcept() {
           <div className='d-flex justify-content-between border m-1 p-2'>
             <div className='d-flex'>
               <h3>{technology?.title}</h3>
-              <Link to={`/admin/addconcept/${tid}/edittechnology/`}><button className='btn btn-primary p-1 me-1'>edit</button></Link>
-              <button className='btn btn-danger p-1' onClick={()=>deleteTechnology(technology)}>delete</button>
+              <Link to={`/admin/addconcept/${tid}/edittechnology/`}><i class="bi bi-pencil-square fs-2"></i></Link>
+            <i class="bi bi-trash text-danger fs-2"  onClick={()=>deleteTechnology(technology)}></i>
             </div>
             <div>
-              <button className='btn btn-success me-1 p-1' onClick={()=>{addConcept()}}>+add concept</button>
+               <i class="bi bi-plus-circle-fill fs-2" onClick={()=>{addConcept()}}></i>
             </div>
           </div>
           <div>
@@ -89,10 +89,13 @@ function AddConcept() {
                                 </div>
                               </div>
                         
-                                <div className='p-1 border m-1 d-flex'>
-                                <Link to={`/admin/addconcept/${tid}/topicdetails/${concept._id}/${concept.topics[0]?._id}`} className="text-decoration-none text-dark"><i>{concept.topics[0]?.shortheading}</i></Link> 
+                              <div>
+                                {concept.topics.map((topic)=><div className='p-1 border m-1 d-flex'>
+                                <Link to={`/admin/addconcept/${tid}/topicdetails/${concept._id}/${topic?._id}`} className="text-decoration-none text-dark"><i>{topic?.shortheading}</i></Link> 
                                     <Link to={`/admin/addconcept/${tid}/edittopic/${concept._id}`}><i class="bi bi-pen d-inline-block pe-2 text-success" style={{width:"35px"}}></i></Link>
                                     <i class="bi bi-trash  d-inline-block p-2 text-danger " style={{width:"35px"}}  onClick={(e)=>{deltopic(concept)}}></i>
+                                </div>
+                                  )}
                                 </div>
                             </div>
                 })

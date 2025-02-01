@@ -9,18 +9,24 @@ function Technology() {
 
   return (
     <div className='m-2 p-2 border '>
+      <b className='fs-1'>
+
         Technologies
+      </b>
         <div className='d-flex'>
          {
             technologies?.map((technology)=>{
-                return <div className='border m-2 p-2 d-flex flex-column align-items-center'>
-                            <div className='d-flex'><h5>Technology:</h5><h5>{technology.title}</h5></div>
-                            <div><img src={technology.image} alt="Loading" style={{width:"140px"}} /></div>
-                            <div>{technology.description}</div>
-                            <Link to={`/technologydetails/${technology._id}`}><button className='btn btn-success'>technology details</button></Link>
-                      </div>
+                return  <div class="card m-3 p-2 " style={{width:"220px"}}>
+                                              <img src={technology.image} style={{width:"100%",height:"180px"}}  class="card-img-top " alt='Loading'/>
+                                              <div class="card-body">
+                                                <h4 class="card-title">{technology.title}</h4>
+                                                <p class="card-text">{technology.description}</p>
+                                                {/* <Link to={`/admin/addconcept/${technology._id}`} class="btn btn-success">More info</Link> */}
+          <Link to={`/technologydetails/${technology._id}`}><button className='btn btn-success'>More details</button></Link>
+                                    </div>
+                                    </div>
             })
-        }
+          }
         </div>
     </div>
   )

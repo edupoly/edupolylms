@@ -14,7 +14,7 @@ import {
   useUpdatetopicMutation,
 } from "../../services/technology";
 
-function EditTopic() {
+function EditContent() {
   const { tid, cid, topicId, contentId } = useParams();
   const [updtopicFn] = useUpdatetopicMutation();
   const { data, isLoading } = useGettopicdetailsQuery({
@@ -91,7 +91,7 @@ function EditTopic() {
         <p>Loading...</p>
       ) : (
         <form onSubmit={edittopic}>
-          <h2>Edit Topic</h2>
+          <h2>Edit Content</h2>
           <div>
             <label htmlFor="title">Title</label>
             <input
@@ -142,7 +142,7 @@ function EditTopic() {
   );
 }
 
-export default EditTopic;
+export default EditContent;
 
 
 
