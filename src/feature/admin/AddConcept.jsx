@@ -33,6 +33,7 @@ function AddConcept() {
   }
 
   async function editConcept(conceptt) {
+    
       console.log(conceptt)
       var conceptName = prompt();
       var concept = {conceptName}
@@ -80,7 +81,6 @@ function AddConcept() {
                                 <div className='d-flex'>
                                     <b>{concept.conceptName}</b>
                                     <i class="bi bi-pen pe-2 text-success" style={{width:"35px"}}  onClick={()=>{editConcept(concept)}}></i>
-                                     
                                     <i class="bi bi-trash   p-2 text-danger" style={{width:"45px", float:"start"}} onClick={()=>{deleteConcept(concept)}}></i>
                                     {/* <button className='btn btn-danger p-1'  >delete</button> */}
                                 </div>

@@ -38,7 +38,7 @@ function Topicdetails() {
             <div className="border m-2" key={content._id}>
               <div className="d-flex justify-content-between">
                 <div>
-                  <h2>{content.shortheading}</h2>
+                  <h2>{content.shortheading} </h2>
                 </div>
                 <div>
                   <Link

@@ -65,8 +65,8 @@ const router = createBrowserRouter([
                     ]
                   },
                   {
-                    path: "/admin/addconcept/:tid/edittopic/:cid/:topicId/:contentId/editcontent",
-                    element: <EditTopic></EditTopic>
+                     path: "/admin/addconcept/:tid/edittopic/:cid/:topicId/:contentId/editcontent",
+                      element: <EditTopic></EditTopic>
                   }
                 ]
               },
